@@ -1,5 +1,8 @@
 import { getDatabaseClient } from "supabase-sdk";
 import useSWR from "swr";
+import { Todo } from "../ts/Todo";
+
+type TodosHookReturnType = { data: Todo[] };
 
 export const useTodos = () => {
   const { getTodos } = getDatabaseClient({
@@ -7,9 +10,5 @@ export const useTodos = () => {
     supabaseUrl: process.env.NEXT_PUBLIC_SUPABASE_URL,
   });
 
-  const test = useSWR("todos", getTodos);
-
-  console.log(test);
-
-  return test;
+  return useSWR<TodosHookReturnType>("todos", getTodos);
 };

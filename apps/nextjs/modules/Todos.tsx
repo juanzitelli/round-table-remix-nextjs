@@ -1,5 +1,6 @@
 import React from "react";
 import { useTodos } from "../hooks/useTodos";
+import { Todo } from "../ts/Todo";
 
 export const Todos = () => {
   const {

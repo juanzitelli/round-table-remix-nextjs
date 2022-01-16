@@ -8,11 +8,7 @@ import { Todo } from "../../ts/Todo";
 interface Props {
   todos: Todo[];
 }
-// interface Props {
-//   todos: Todo[];
-// }
 
-// const TodosPage = ({ todos }: Props) => {
 const TodosPage = ({ fallback }) => {
   return (
     <SWRConfig value={{ fallback }}>
