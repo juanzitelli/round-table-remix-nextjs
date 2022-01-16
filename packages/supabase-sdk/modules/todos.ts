@@ -12,7 +12,7 @@ type GetDatabaseClient = (params: {
   supabaseUrl: string;
   supabaseKey: string;
   options?: SupabaseClientOptions | undefined;
-}) => Record<string, Function>;
+}) => any;
 
 export const getDatabaseClient: GetDatabaseClient = ({
   supabaseKey,
