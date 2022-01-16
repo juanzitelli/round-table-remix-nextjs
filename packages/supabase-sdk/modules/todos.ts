@@ -1,5 +1,13 @@
 import { createClient, SupabaseClientOptions } from "@supabase/supabase-js";
 
+const TODOS_TABLE_NAME = "todos";
+
+type Todo = {
+  id?: string;
+  description: string;
+  is_completed: boolean;
+};
+
 type GetDatabaseClient = (params: {
   supabaseUrl: string;
   supabaseKey: string;
@@ -9,7 +17,7 @@ type GetDatabaseClient = (params: {
 export const getDatabaseClient: GetDatabaseClient = ({
   supabaseKey,
   supabaseUrl,
-  options: supabaseOptions,
+  options,
 }) => {
   if (!supabaseKey || !supabaseUrl) {
     throw new Error(
@@ -17,9 +25,9 @@ export const getDatabaseClient: GetDatabaseClient = ({
     );
   }
 
-  const options = supabaseOptions ?? {};
+  const supabaseOptions = options ?? {};
 
-  const client = createClient(supabaseUrl, supabaseKey, options);
+  const client = createClient(supabaseUrl, supabaseKey, supabaseOptions);
 
   if (!client) {
     throw new Error(
@@ -27,13 +35,39 @@ export const getDatabaseClient: GetDatabaseClient = ({
     );
   }
 
-  const createTodo = () => {};
-  const updateTodo = () => {};
-  const deleteTodo = () => {};
-  const getTodos = async () => {
-    return await client.from("todos").select("*");
+  const createTodo = async ({ todo }: { todo: Todo }) => {
+    return await client.from(TODOS_TABLE_NAME).insert(todo);
   };
-  const getTodoById = () => {};
+
+  const updateTodo = async ({ todo }: { todo: Todo }) => {
+    const { id, ...data } = todo;
+
+    if (!id) {
+      throw new Error("The todo item ID is required.");
+    }
+
+    return await client.from(TODOS_TABLE_NAME).update(data).eq("id", id);
+  };
+
+  const deleteTodo = async ({ id }: { id: string }) => {
+    if (!id) {
+      throw new Error("The todo item ID is required.");
+    }
+
+    return await client.from(TODOS_TABLE_NAME).delete().eq("id", id);
+  };
+
+  const getTodoById = async ({ id }: { id: string }) => {
+    if (!id) {
+      throw new Error("The todo item ID is required.");
+    }
+
+    return await client.from(TODOS_TABLE_NAME).select("*").eq("id", id);
+  };
+
+  const getTodos = async () => {
+    return await client.from(TODOS_TABLE_NAME).select("*");
+  };
 
   return {
     createTodo,

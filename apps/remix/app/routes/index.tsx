@@ -1,12 +1,13 @@
 import { useLoaderData } from "remix";
 import { getDatabaseClient } from "supabase-sdk";
 
-console.log(process.env.SUPABASE_KEY, process.env.SUPABASE_URL);
-
 export const loader = async () => {
+  const supabaseKey = process.env.SUPABASE_KEY || "";
+  const supabaseUrl = process.env.SUPABASE_URL || "";
+
   const client = getDatabaseClient({
-    supabaseKey: process.env.SUPABASE_KEY || "",
-    supabaseUrl: process.env.SUPABASE_URL || "",
+    supabaseKey,
+    supabaseUrl,
   });
 
   const { data: todos } = await client.getTodos();
