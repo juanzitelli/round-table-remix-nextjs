@@ -1,20 +1,20 @@
 import { GetStaticProps } from "next";
+import Link from "next/link";
 import React from "react";
 import { getDatabaseClient } from "supabase-sdk";
 import { SWRConfig } from "swr";
-import { Todos } from "../../modules/Todos";
-import { Todo } from "../../ts/Todo";
-
-interface Props {
-  todos: Todo[];
-}
+import { Todos } from "../../modules/todos/Todos";
 
 const TodosPage = ({ fallback }) => {
   return (
     <SWRConfig value={{ fallback }}>
-      <div>
+      <main>
+        <h1>Static Generation</h1>
         <Todos />
-      </div>
+        <Link href="/todos/new">
+          <a>Add a new todo</a>
+        </Link>
+      </main>
     </SWRConfig>
   );
 };

@@ -15,10 +15,9 @@ export default function Web() {
 
   return (
     <div>
-      <h1>Web</h1>
+      <h1>Client Side Fetching</h1>
 
       <pre>{JSON.stringify(todos, null, 2)}</pre>
-      <Button />
     </div>
   );
 }

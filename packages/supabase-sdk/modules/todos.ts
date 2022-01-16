@@ -5,7 +5,7 @@ const TODOS_TABLE_NAME = "todos";
 type Todo = {
   id?: string;
   description: string;
-  is_completed: boolean;
+  done: boolean;
 };
 
 type GetDatabaseClient = (params: {
