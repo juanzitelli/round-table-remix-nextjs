@@ -6,8 +6,8 @@
   "compilerOptions": {
     "lib": ["DOM", "DOM.Iterable", "ES2019"],
     "jsx": "react-jsx",
-    "resolveJsonModule": true,
-    "target": "ES2019",
+    "target": "ESNext",
+    "allowJs": true,
     "baseUrl": ".",
     "noEmit": true
   }

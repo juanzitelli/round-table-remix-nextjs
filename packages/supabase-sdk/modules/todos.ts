@@ -1,19 +1,25 @@
 import { createClient, SupabaseClientOptions } from "@supabase/supabase-js";
 
-export const getDatabaseClient = (params: {
+type GetDatabaseClient = (params: {
   supabaseUrl: string;
   supabaseKey: string;
   options?: SupabaseClientOptions | undefined;
+}) => Record<string, Function>;
+
+export const getDatabaseClient: GetDatabaseClient = ({
+  supabaseKey,
+  supabaseUrl,
+  options: supabaseOptions,
 }) => {
-  if (!params.supabaseKey || !params.supabaseUrl) {
+  if (!supabaseKey || !supabaseUrl) {
     throw new Error(
       "Both a supabase key and url are required for the supabase-sdk package to work"
     );
   }
 
-  const options = params.options ?? {};
+  const options = supabaseOptions ?? {};
 
-  const client = createClient(params.supabaseKey, params.supabaseUrl, options);
+  const client = createClient(supabaseUrl, supabaseKey, options);
 
   if (!client) {
     throw new Error(

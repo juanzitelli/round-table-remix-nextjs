@@ -1,21 +1,5 @@
 {
-  "extends": "tsconfig/nextjs.json",
+  "extends": "tsconfig/node-lib.json",
   "include": ["."],
-  "exclude": ["dist", "build", "node_modules"],
-  "compilerOptions": {
-    //   "target": "es5",
-    //   "lib": ["dom", "dom.iterable", "esnext"],
-    //   "allowJs": true,
-    //   "skipLibCheck": true,
-    //   "strict": false,
-    //   "forceConsistentCasingInFileNames": true,
-    //   "noEmit": true,
-    //   "moduleResolution": "node",
-    //   "incremental": true,
-    //   "esModuleInterop": true,
-    //   "module": "esnext",
-    //   "resolveJsonModule": true,
-    //   "isolatedModules": true,
-    //   "jsx": "preserve"
-  }
+  "exclude": ["dist", "build", "node_modules"]
 }

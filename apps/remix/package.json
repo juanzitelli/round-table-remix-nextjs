@@ -1,26 +1,28 @@
 {
   "private": true,
-  "name": "remix-app-template",
+  "name": "remix-app",
   "version": "1.0.0",
   "scripts": {
     "build": "remix build",
-    "dev": "remix dev",
+    "dev": "PORT=5000 node -r dotenv/config node_modules/.bin/remix dev",
     "postinstall": "remix setup node"
   },
   "dependencies": {
     "@remix-run/react": "^1.1.1",
+    "@remix-run/serve": "^1.1.1",
+    "@remix-run/vercel": "^1.1.1",
+    "dotenv": "^12.0.4",
     "react": "^17.0.2",
     "react-dom": "^17.0.2",
     "remix": "^1.1.1",
-    "@remix-run/serve": "^1.1.1",
-    "@remix-run/vercel": "^1.1.1"
+    "supabase-sdk": "*"
   },
   "devDependencies": {
     "@remix-run/dev": "^1.1.1",
     "@types/react": "^17.0.24",
     "@types/react-dom": "^17.0.9",
-    "typescript": "^4.1.2",
-    "tsconfig": "*"
+    "tsconfig": "*",
+    "typescript": "^4.1.2"
   },
   "engines": {
     "node": ">=14"

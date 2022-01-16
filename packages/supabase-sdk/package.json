@@ -2,17 +2,24 @@
   "name": "supabase-sdk",
   "version": "1.0.0",
   "description": "Custom TODO list package",
-  "main": "./index.ts",
+  "main": "./dist/index.js",
   "types": "./index.ts",
   "author": "Juan Zitelli <juan.zitelli@humandecode.com>",
   "license": "MIT",
-  "type": "module",
   "private": true,
+  "files": [
+    "dist/**"
+  ],
+  "scripts": {
+    "dev": "tsup index.ts --watch",
+    "build": "tsup index.ts"
+  },
   "dependencies": {
     "@supabase/supabase-js": "^1.29.1"
   },
   "devDependencies": {
     "tsconfig": "*",
+    "tsup": "^5.11.11",
     "typescript": "^4.5.4"
   }
 }
