@@ -1,6 +1,7 @@
 import {
   ActionFunction,
   Form,
+  Link,
   redirect,
   useActionData,
   useTransition,
@@ -29,8 +30,6 @@ export const action: ActionFunction = async ({ request }) => {
   }
 
   const todo = { description, done };
-
-  console.log({ todo });
 
   await createTodo({ todo });
 
@@ -66,10 +65,35 @@ export default function NewTodoPage() {
           <input name="done" id="done" type="checkbox" />
         </label>
 
-        <div>
-          <button disabled={!!transition.submission} type="submit">
-            {transition.state === "submitting" ? "Submitting...." : "Submit"}
-          </button>
+        <div
+          style={{
+            display: "flex",
+            flexDirection: "row",
+          }}
+        >
+          <div>
+            <button disabled={!!transition.submission} type="submit">
+              {transition.state === "submitting" ? "Submitting...." : "Submit"}
+            </button>
+          </div>
+
+          <div>
+            <Link to="/todos">Cancel</Link>
+          </div>
+
+          <div>
+            <form method="post">
+              <input type="hidden" name="_method" value="delete" />
+              <button
+                style={{
+                  color: "red",
+                }}
+                type="submit"
+              >
+                Delete
+              </button>
+            </form>
+          </div>
         </div>
       </Form>
     </>

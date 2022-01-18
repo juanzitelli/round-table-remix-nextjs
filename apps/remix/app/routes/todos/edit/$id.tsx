@@ -42,8 +42,6 @@ export const action: ActionFunction = async ({ request, params }) => {
 
   const todo = { id: params.id, description, done };
 
-  console.log({ todo });
-
   await updateTodo({ todo });
 
   return redirect("/todos");
@@ -116,6 +114,10 @@ export default function NewTodoPage() {
           </div>
 
           <div>
+            <Link to="/todos">Cancel</Link>
+          </div>
+
+          <div>
             <form method="post">
               <input type="hidden" name="_method" value="delete" />
               <button
@@ -127,10 +129,6 @@ export default function NewTodoPage() {
                 Delete
               </button>
             </form>
-          </div>
-
-          <div>
-            <Link to="/todos">Cancel</Link>
           </div>
         </div>
       </Form>
