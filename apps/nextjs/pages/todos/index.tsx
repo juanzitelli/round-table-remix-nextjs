@@ -1,9 +1,9 @@
 import { GetStaticProps } from "next";
 import Link from "next/link";
 import React from "react";
-import { getDatabaseClient } from "supabase-sdk";
 import { SWRConfig } from "swr";
 import { Todos } from "../../modules/todos/Todos";
+import { getTodos } from "../../server/db";
 
 const TodosPage = ({ fallback }) => {
   return (
@@ -22,11 +22,6 @@ const TodosPage = ({ fallback }) => {
 export default TodosPage;
 
 export const getStaticProps: GetStaticProps = async () => {
-  const { getTodos } = getDatabaseClient({
-    supabaseKey: process.env.NEXT_PUBLIC_SUPABASE_KEY,
-    supabaseUrl: process.env.NEXT_PUBLIC_SUPABASE_URL,
-  });
-
   const { data: todos } = await getTodos();
 
   return {

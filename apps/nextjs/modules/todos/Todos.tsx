@@ -1,13 +1,8 @@
 import Link from "next/link";
 import React from "react";
-import { getDatabaseClient } from "supabase-sdk";
 import { useTodos } from "../../hooks/useTodos";
+import { deleteTodo } from "../../server/db";
 import { Todo } from "../../ts/Todo";
-
-const { deleteTodo } = getDatabaseClient({
-  supabaseKey: process.env.NEXT_PUBLIC_SUPABASE_KEY,
-  supabaseUrl: process.env.NEXT_PUBLIC_SUPABASE_URL,
-});
 
 export const Todos = () => {
   const { data, mutate, error } = useTodos();

@@ -1,8 +1,8 @@
 import { useRouter } from "next/router";
 import React from "react";
-import { getDatabaseClient } from "supabase-sdk";
 import { BaseTodoForm, Inputs } from "../../components/forms/BaseTodoForm";
 import { useTodos } from "../../hooks/useTodos";
+import { createTodo } from "../../server/db";
 
 interface Props {}
 
@@ -12,11 +12,6 @@ const NewTodoPage = (props: Props) => {
   const { mutate } = useTodos();
 
   const onSubmit = async (todoData: Inputs) => {
-    const { createTodo } = getDatabaseClient({
-      supabaseKey: process.env.NEXT_PUBLIC_SUPABASE_KEY,
-      supabaseUrl: process.env.NEXT_PUBLIC_SUPABASE_URL,
-    });
-
     await createTodo({ todo: todoData });
 
     mutate();

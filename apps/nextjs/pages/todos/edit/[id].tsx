@@ -1,18 +1,13 @@
 import { useRouter } from "next/router";
 import React from "react";
-import { getDatabaseClient } from "supabase-sdk";
 import { BaseTodoForm } from "../../../components/forms/BaseTodoForm";
 import { useTodo } from "../../../hooks/useTodo";
+import { updateTodo } from "../../../server/db";
 import { Todo } from "../../../ts/Todo";
 
 interface Props {}
 
 const EditSingleTodoPage = (props: Props) => {
-  const { updateTodo } = getDatabaseClient({
-    supabaseUrl: process.env.NEXT_PUBLIC_SUPABASE_URL,
-    supabaseKey: process.env.NEXT_PUBLIC_SUPABASE_KEY,
-  });
-
   const {
     query: { id },
     push,
