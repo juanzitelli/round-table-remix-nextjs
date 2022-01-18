@@ -1,7 +1,7 @@
 {
   "name": "remix-vs-nextjs-monorepo",
   "version": "1.0.0",
-  "private": false,
+  "private": true,
   "workspaces": [
     "apps/*",
     "packages/*"
