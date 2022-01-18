@@ -18,11 +18,11 @@ const EditSingleTodoPage = (props: Props) => {
     push,
   } = useRouter();
 
-  if (!id) {
-    return <p>Something went wrong. The param id couldn't be obtained</p>;
-  }
-
   const { data, error, mutate } = useTodo({ id: id as string });
+
+  if (!id) {
+    return <p>{`Something went wrong. The param id couldn't be obtained`}</p>;
+  }
 
   if (error) {
     return <p>{error}</p>;
